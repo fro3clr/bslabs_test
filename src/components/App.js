@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from "../logo.svg";
 import "../App.css";
 import Posts from "./Posts";
-import { fetchPosts } from "../actions/posts";
+import { fetchPosts, removePost } from "../actions/posts";
 import { connect } from "react-redux";
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">Test task for Business Labs</p>
-        <Posts posts={this.getPosts()} />
+        <Posts posts={this.getPosts()} removePost={this.props.removePost} />
       </div>
     );
   }
@@ -22,7 +22,6 @@ class App extends Component {
   componentWillMount() {
     this.props.fetchPosts("robot");
   }
-
 
   getPosts() {
     const posts = this.props.posts;
@@ -34,7 +33,8 @@ class App extends Component {
 const mapStateToProps = state => state.toObject();
 
 const AppContainer = connect(mapStateToProps, {
-  fetchPosts
+  fetchPosts,
+  removePost
 })(App);
 
 export default AppContainer;

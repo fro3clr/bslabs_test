@@ -1,14 +1,22 @@
 import React from "react";
 
-const Post = ({ post }) =>
+const handleClickOnClose = (post, removePost) => event => {
+  event.preventDefault();
+  removePost(post.id);
+};
+
+const Post = ({ post, removePost }) =>
   <div className="row">
     <div className="col s12 m6 l4">
       <div className="card medium">
         <div className="card-image">
-          <a class="btn-floating btn-small waves-effect waves-light">
-            <i class="material-icons grey darken-3">close</i>
+          <a
+            className="btn-floating btn-small waves-effect waves-light"
+            onClick={handleClickOnClose(post, removePost)}
+          >
+            <i className="material-icons grey darken-3">close</i>
           </a>
-          <img src={post.webformatURL} />
+          <img alt="" src={post.webformatURL} />
           <a
             href={post.pageURL}
             className="card-title"
@@ -16,7 +24,10 @@ const Post = ({ post }) =>
           >
             Source
           </a>
-          <span class="likes-count"><i class="material-icons right">favorite</i>{post.likes}</span>
+          <span className="likes-count">
+            <i className="material-icons right">favorite</i>
+            {post.likes}
+          </span>
         </div>
         <div className="card-content">
           <p>
@@ -24,13 +35,13 @@ const Post = ({ post }) =>
           </p>
         </div>
         <div className="card-action">
-          <a class="waves-effect waves-light btn green">
-            <i class="material-icons center">check</i>
+          <a className="waves-effect waves-light btn green">
+            <i className="material-icons center">check</i>
           </a>
-          <a class="waves-effect waves-light btn red">
-            <i class="material-icons center">report_problem</i>
+          <a className="waves-effect waves-light btn red">
+            <i className="material-icons center">report_problem</i>
           </a>
-          <a class="waves-effect waves-light btn">Save/Delete</a> <br />
+          <a className="waves-effect waves-light btn">Save/Delete</a> <br />
         </div>
       </div>
     </div>
