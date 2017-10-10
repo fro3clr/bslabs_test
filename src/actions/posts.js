@@ -3,7 +3,9 @@ import withQuery from "with-query";
 
 export const REQUEST_POSTS = "REQUEST_POSTS";
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
-export const REMOVE_POST  = "REMOVE_POST";
+export const REMOVE_POST = "REMOVE_POST";
+export const APPROVE_POST = "APPROVE POST";
+export const DECLINE_POST = "DECLINE POST";
 
 export const requestPosts = () => {
   return {
@@ -21,6 +23,20 @@ export const receivePosts = posts => {
 export const removePost = postId => {
   return {
     type: REMOVE_POST,
+    postId
+  };
+};
+
+export const approvePost = postId => {
+  return {
+    type: APPROVE_POST,
+    postId
+  };
+};
+
+export const declinePost = postId => {
+  return {
+    type: DECLINE_POST,
     postId
   };
 };

@@ -1,5 +1,11 @@
 import { fromJS } from "immutable";
-import { REQUEST_POSTS, RECEIVE_POSTS, REMOVE_POST } from "../actions/posts";
+import {
+  REQUEST_POSTS,
+  RECEIVE_POSTS,
+  REMOVE_POST,
+  APPROVE_POST,
+  DECLINE_POST
+} from "../actions/posts";
 import _ from "lodash";
 
 const posts = (state, action) => {
@@ -22,6 +28,24 @@ const posts = (state, action) => {
               .findKey(post => post.get("id") === action.postId)
           )
       );
+    case APPROVE_POST:
+      const postForApprove = state
+        .getIn(["posts", "list"])
+        .findKey(postForApprove => postForApprove.get("id") === action.postId);
+      return state.setIn(
+        ["posts", "list", postForApprove, "likes"],
+        state.getIn(["posts", "list", postForApprove]).get("likes") + 1
+      );
+
+    case DECLINE_POST:
+      const postForDecline = state
+        .getIn(["posts", "list"])
+        .findKey(postForDecline => postForDecline.get("id") === action.postId);
+      return state.setIn(
+        ["posts", "list", postForDecline, "likes"],
+        state.getIn(["posts", "list", postForDecline]).get("likes") - 1
+      );
+
     default:
       return state;
   }
