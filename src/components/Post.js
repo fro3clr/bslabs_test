@@ -1,4 +1,5 @@
 import React from "react";
+import Comments from "./Comments";
 
 class Post extends React.Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class Post extends React.Component {
         <div className="col s12 m6 l4">
           <div
             className={
-              "card medium " +
+              "card large " +
               (this.state.approvedPost ? "light-green lighten-4" : "") +
               (this.state.declinedPost ? "red lighten-4" : "")
             }
@@ -59,11 +60,11 @@ class Post extends React.Component {
               >
                 <i className="material-icons grey darken-3">close</i>
               </a>
-              <img alt="" src={post.webformatURL} />
+              <img alt="" className="materialboxed" src={post.webformatURL} />
               <a
                 href={post.pageURL}
-                className="card-title"
-                style={{ color: "#adadad" }}
+                className="card-title grey lighten-1"
+                style={{ padding: "5px" }}
               >
                 Source
               </a>
@@ -96,8 +97,14 @@ class Post extends React.Component {
               >
                 <i className="material-icons center">report_problem</i>
               </a>
-              <a className="waves-effect waves-light btn">Save/Delete</a> <br />
+              <a className="waves-effect waves-light btn grey darken-3">
+                <i className="material-icons center">save</i>
+              </a>
+              <a className="waves-effect waves-light btn grey darken-3 activator">
+                <i className="material-icons right">comments</i>
+              </a>
             </div>
+            <Comments post={post} />
           </div>
         </div>
       </div>
