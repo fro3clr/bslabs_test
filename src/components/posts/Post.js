@@ -1,5 +1,5 @@
 import React from "react";
-import Comments from "./Comments";
+import Comments from "../comments/Comments";
 
 class Post extends React.Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class Post extends React.Component {
   };
 
   render() {
-    const { post, removePost, approvePost, declinePost } = this.props;
+    const { post, removePost, approvePost, declinePost, addComment, removeComment } = this.props;
     return (
       <div className="row">
         <div className="col s12 m6 l4">
@@ -104,7 +104,7 @@ class Post extends React.Component {
                 <i className="material-icons right">comments</i>
               </a>
             </div>
-            <Comments post={post} />
+            <Comments post={post} addComment={addComment} removeComment={removeComment} />
           </div>
         </div>
       </div>

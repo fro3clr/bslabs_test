@@ -1,4 +1,4 @@
-import { fromJS } from "immutable";
+import { fromJS, List } from "immutable";
 import {
   REQUEST_POSTS,
   RECEIVE_POSTS,
@@ -13,7 +13,6 @@ const posts = (state, action) => {
     case REQUEST_POSTS:
       return state.set("posts", fromJS({ isFetching: true, list: [] }));
     case RECEIVE_POSTS:
-      console.log(action.posts);
       return state
         .setIn(["posts", "isFetching"], false)
         .mergeIn(["posts", "list"], _.toArray(action.posts));
@@ -28,24 +27,24 @@ const posts = (state, action) => {
               .findKey(post => post.get("id") === action.postId)
           )
       );
-    case APPROVE_POST:
-      const postForApprove = state
+    case APPROVE_POST: {
+      const post = state
         .getIn(["posts", "list"])
-        .findKey(postForApprove => postForApprove.get("id") === action.postId);
+        .findKey(post => post.get("id") === action.postId);
       return state.setIn(
-        ["posts", "list", postForApprove, "likes"],
-        state.getIn(["posts", "list", postForApprove]).get("likes") + 1
+        ["posts", "list", post, "likes"],
+        state.getIn(["posts", "list", post]).get("likes") + 1
       );
-
-    case DECLINE_POST:
-      const postForDecline = state
+    }
+    case DECLINE_POST: {
+      const post = state
         .getIn(["posts", "list"])
-        .findKey(postForDecline => postForDecline.get("id") === action.postId);
+        .findKey(post => post.get("id") === action.postId);
       return state.setIn(
-        ["posts", "list", postForDecline, "likes"],
-        state.getIn(["posts", "list", postForDecline]).get("likes") - 1
+        ["posts", "list", post, "likes"],
+        state.getIn(["posts", "list", post]).get("likes") - 1
       );
-
+    }
     default:
       return state;
   }

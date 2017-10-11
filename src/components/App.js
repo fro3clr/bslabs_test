@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import logo from "../logo.svg";
 import "../App.css";
-import Posts from "./Posts";
+import Posts from "./posts/Posts";
 import {
   fetchPosts,
   removePost,
   approvePost,
   declinePost
 } from "../actions/posts";
+import { addComment, removeComment } from "../actions/comments";
 import { connect } from "react-redux";
 
 class App extends Component {
@@ -24,6 +25,8 @@ class App extends Component {
           removePost={this.props.removePost}
           approvePost={this.props.approvePost}
           declinePost={this.props.declinePost}
+          addComment={this.props.addComment}
+          removeComment={this.props.removeComment}
         />
       </div>
     );
@@ -46,7 +49,9 @@ const AppContainer = connect(mapStateToProps, {
   fetchPosts,
   removePost,
   approvePost,
-  declinePost
+  declinePost,
+  addComment,
+  removeComment
 })(App);
 
 export default AppContainer;
