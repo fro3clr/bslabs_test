@@ -7,39 +7,29 @@ export const REMOVE_POST = "REMOVE_POST";
 export const APPROVE_POST = "APPROVE POST";
 export const DECLINE_POST = "DECLINE POST";
 
-export const requestPosts = () => {
-  return {
-    type: REQUEST_POSTS
-  };
-};
+export const requestPosts = () => ({
+  type: REQUEST_POSTS
+});
 
-export const receivePosts = posts => {
-  return {
-    type: RECEIVE_POSTS,
-    posts
-  };
-};
+export const receivePosts = posts => ({
+  type: RECEIVE_POSTS,
+  posts
+});
 
-export const removePost = postId => {
-  return {
-    type: REMOVE_POST,
-    postId
-  };
-};
+export const removePost = postId => ({
+  type: REMOVE_POST,
+  postId
+});
 
-export const approvePost = postId => {
-  return {
-    type: APPROVE_POST,
-    postId
-  };
-};
+export const approvePost = postId => ({
+  type: APPROVE_POST,
+  postId
+});
 
-export const declinePost = postId => {
-  return {
-    type: DECLINE_POST,
-    postId
-  };
-};
+export const declinePost = postId => ({
+  type: DECLINE_POST,
+  postId
+});
 
 export const fetchPosts = keyWord => dispatch => {
   if (keyWord) {
