@@ -40,11 +40,20 @@ class App extends Component {
 
   componentWillMount() {
     this.props.fetchPosts("robot");
-    localStorage.setItem("savedPosts", JSON.stringify([]));
+    this.synchronizeStorage();
   }
 
   getPosts(posts) {
     return posts && posts.get("list").size > 0 ? posts.toJS().list : [];
+  }
+
+  synchronizeStorage() {
+    let savedPosts = JSON.parse(localStorage.getItem("savedPosts"));
+    if (!JSON.parse(localStorage.getItem("savedPosts"))) {
+      localStorage.setItem("savedPosts", JSON.stringify([]));
+    } else {
+      this.props.saveStorage(savedPosts);
+    }
   }
 }
 
