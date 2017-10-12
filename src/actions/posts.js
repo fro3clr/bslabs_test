@@ -36,7 +36,7 @@ export const fetchPosts = keyWord => dispatch => {
     dispatch(requestPosts());
 
     fetch(
-      withQuery(`https://pixabay.com/api/?`, {
+      withQuery(config.apiUrl, {
         key: config.apiKey,
         orientation: "vertical",
         q: keyWord
