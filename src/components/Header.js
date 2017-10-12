@@ -1,19 +1,25 @@
 import React from "react";
 import SearchForm from "./SearchForm";
+import SavedItems from "./SavedItems";
 
-const handleSearch = (fetchPosts) => event => {
-    event.preventDefault();
-    fetchPosts(event.target.value);
-}
+const handleSearch = fetchPosts => event => {
+  event.preventDefault();
+  fetchPosts(event.target.value);
+};
 
-const Header = ({ logo, fetchPosts }) =>
-  <header className="App-header">
-    <img src={logo} className="App-logo" alt="logo" />
-    <nav>
-      <div className="nav-wrapper">
+const Header = ({ logo, saveStorage, fetchPosts, storagePosts }) =>
+  <div className="row">
+    <header className="App-header">
+      <div className="col s2">
+        <img src={logo} className="App-logo" alt="logo" />
+      </div>
+      <div className="col s8">
         <SearchForm fetchPosts={fetchPosts} />
       </div>
-    </nav>
-  </header>;
+      <div className="col s2">
+        <SavedItems saveStorage={saveStorage} storagePosts={storagePosts} />
+      </div>
+    </header>
+  </div>;
 
 export default Header;

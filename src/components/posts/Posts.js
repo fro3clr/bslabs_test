@@ -1,7 +1,17 @@
 import React from "react";
 import Post from "./Post";
 
-const Posts = ({ posts, removePost, approvePost, declinePost, addComment, removeComment }) =>
+const Posts = ({
+  posts,
+  removePost,
+  approvePost,
+  declinePost,
+  addComment,
+  removeComment,
+  saveStorage,
+  shortForm,
+  storagePosts
+}) =>
   <div className="posts">
     {posts
       ? posts.map((post, postIndex) =>
@@ -13,6 +23,9 @@ const Posts = ({ posts, removePost, approvePost, declinePost, addComment, remove
             declinePost={declinePost}
             addComment={addComment}
             removeComment={removeComment}
+            saveStorage={saveStorage}
+            shortForm={shortForm}
+            storagePosts={storagePosts}
           />
         )
       : null}

@@ -9,6 +9,7 @@ import {
   declinePost
 } from "../actions/posts";
 import { addComment, removeComment } from "../actions/comments";
+import { saveStorage } from "../actions/storage";
 import { connect } from "react-redux";
 import Header from "./Header";
 
@@ -16,15 +17,22 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       <Header logo={logo} fetchPosts={this.props.fetchPosts}/>
+        <Header
+          logo={logo}
+          saveStorage={this.props.saveStorage}
+          fetchPosts={this.props.fetchPosts}
+          storagePosts={this.getPosts(this.props.storage)}
+        />
         <p className="App-intro">Test task for Business Labs</p>
         <Posts
-          posts={this.getPosts()}
+          posts={this.getPosts(this.props.posts)}
           removePost={this.props.removePost}
           approvePost={this.props.approvePost}
           declinePost={this.props.declinePost}
           addComment={this.props.addComment}
           removeComment={this.props.removeComment}
+          saveStorage={this.props.saveStorage}
+          storagePosts={this.getPosts(this.props.storage)}
         />
       </div>
     );
@@ -32,11 +40,10 @@ class App extends Component {
 
   componentWillMount() {
     this.props.fetchPosts("robot");
+    localStorage.setItem("savedPosts", JSON.stringify([]));
   }
 
-  getPosts() {
-    const posts = this.props.posts;
-
+  getPosts(posts) {
     return posts && posts.get("list").size > 0 ? posts.toJS().list : [];
   }
 }
@@ -49,7 +56,8 @@ const AppContainer = connect(mapStateToProps, {
   approvePost,
   declinePost,
   addComment,
-  removeComment
+  removeComment,
+  saveStorage
 })(App);
 
 export default AppContainer;
