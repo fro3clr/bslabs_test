@@ -11,7 +11,7 @@ const Comments = ({ post, addComment, removeComment }) =>
             {post.commentsList
       ? post.commentsList.map((comment, commentId) =>
           <Comment
-            key={commentIndex}
+            key={commentId}
             postId={post.id}
             commentId={commentId}
             comment={comment}
