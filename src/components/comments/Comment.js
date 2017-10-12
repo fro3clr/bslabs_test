@@ -6,7 +6,7 @@ const handleClickOnDelete = (postId, commentId, removeComment) => event => {
 };
 
 const Comment = ({ postId, commentId, comment, removeComment }) =>
-  <div className="comment" style={{ textAlign: "left" }}>
+  <div className="comment left-align">
     <i
       className="material-icons right small"
       style={{ cursor: "pointer" }}
