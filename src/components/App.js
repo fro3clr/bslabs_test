@@ -59,14 +59,32 @@ class App extends Component {
 
 const mapStateToProps = state => state.toObject();
 
-const AppContainer = connect(mapStateToProps, {
-  fetchPosts,
-  removePost,
-  approvePost,
-  declinePost,
-  addComment,
-  removeComment,
-  saveStorage,
-})(App);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchPosts: (keyWord) => {
+            dispatch(fetchPosts(keyWord));
+        },
+         removePost: (postId) => {
+            dispatch(removePost(postId));
+        },
+         approvePost: (postId) => {
+            dispatch(approvePost(postId));
+        },
+         declinePost: (postId) => {
+            dispatch(declinePost(postId));
+        },
+         addComment: (postId, commentData) => {
+            dispatch(addComment(postId, commentData));
+        },
+         removeComment: (postId, commentData) => {
+            dispatch(removeComment(postId, commentData));
+        },
+         saveStorage: (data) => {
+            dispatch(saveStorage(data));
+        },
+    }
+};
+
+const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default AppContainer;
