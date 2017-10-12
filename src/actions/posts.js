@@ -40,7 +40,12 @@ export const fetchPosts = keyWord => (dispatch) => {
       orientation: 'vertical',
       q: keyWord,
     }))
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        return response.json();
+    })
       .then(json => dispatch(receivePosts(json.hits)));
   }
 };
