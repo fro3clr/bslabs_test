@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import logo from "../logo.svg";
 import "../App.css";
 import Posts from "./posts/Posts";
+import Header from "./Header";
 import {
   fetchPosts,
   removePost,
@@ -10,8 +12,6 @@ import {
 } from "../actions/posts";
 import { addComment, removeComment } from "../actions/comments";
 import { saveStorage } from "../actions/storage";
-import { connect } from "react-redux";
-import Header from "./Header";
 
 class App extends Component {
   render() {

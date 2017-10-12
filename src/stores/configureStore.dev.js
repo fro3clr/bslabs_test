@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import rootReducer from "../reducers/rootReducer";
 import { fromJS } from "immutable";
 import { composeWithDevTools } from "redux-devtools-extension";
+import rootReducer from "../reducers/rootReducer";
 
 const INITIAL_STATE = fromJS({});
 

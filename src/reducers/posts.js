@@ -1,4 +1,5 @@
 import { fromJS } from "immutable";
+import _ from "lodash";
 import {
   REQUEST_POSTS,
   RECEIVE_POSTS,
@@ -6,7 +7,6 @@ import {
   APPROVE_POST,
   DECLINE_POST
 } from "../actions/posts";
-import _ from "lodash";
 
 const posts = (state, action) => {
   switch (action.type) {
