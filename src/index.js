@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import AppContainer from "./components/App";
+import { Provider } from "react-redux";
 import registerServiceWorker from "./registerServiceWorker";
 import configureStore from "./stores/configureStore";
-import { Provider } from "react-redux";
+import AppContainer from "./components/App";
+import "./index.css";
+
 
 const store = configureStore();
 
