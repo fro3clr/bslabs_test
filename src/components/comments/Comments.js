@@ -9,11 +9,11 @@ const Comments = ({ post, addComment, removeComment }) =>
         </span>
         <ul className="comments-list">
             {post.commentsList
-      ? post.commentsList.map((comment, commentIndex) =>
+      ? post.commentsList.map((comment, commentId) =>
           <Comment
             key={commentIndex}
             postId={post.id}
-            commentId={commentIndex}
+            commentId={commentId}
             comment={comment}
             removeComment={removeComment}
           />
