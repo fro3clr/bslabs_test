@@ -31,8 +31,7 @@ const posts = (state, action) => {
         .findKey(post => post.get('id') === action.postId);
       return state.setIn(
         ['posts', 'list', post, 'likes'],
-        state.getIn(['posts', 'list', post]).get('likes') + 1
-      );
+        state.getIn(['posts', 'list', post]).get('likes') + 1);
     }
     case DECLINE_POST: {
       const post = state

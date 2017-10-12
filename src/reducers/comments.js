@@ -8,9 +8,9 @@ const comments = (state, action) => {
         .getIn(["posts", "list"])
         .findKey(post => post.get("id") === action.postId);
 
-      const list =
+      const commentsList =
         state.getIn(["posts", "list", post, "commentsList"]) || List();
-      const updatedList = list.push(action.commentData);
+      const updatedList = commentsList.push(action.commentData);
 
       return state.setIn(["posts", "list", post, "commentsList"], updatedList);
     }

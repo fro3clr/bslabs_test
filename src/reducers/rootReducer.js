@@ -7,9 +7,9 @@ import {
 } from "../actions/posts";
 import { ADD_COMMENT, REMOVE_COMMENT } from "../actions/comments";
 import { SAVE_STORAGE } from "../actions/storage";
-import posts from "./posts";
 import comments from "./comments";
 import storage from "./storage";
+import posts from "./posts";
 
 const rootReducer = (state, action) => {
   switch (action.type) {
