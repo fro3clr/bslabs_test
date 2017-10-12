@@ -2,11 +2,6 @@ import React from "react";
 import SearchForm from "./SearchForm";
 import SavedItems from "./SavedItems";
 
-const handleSearch = fetchPosts => event => {
-  event.preventDefault();
-  fetchPosts(event.target.value);
-};
-
 const Header = ({ logo, saveStorage, fetchPosts, storagePosts }) =>
   <div className="row">
     <header className="App-header">

@@ -1,6 +1,5 @@
 import React from "react";
 import Comments from "../comments/Comments";
-import _ from "lodash";
 
 class Post extends React.Component {
   constructor(props) {
@@ -61,7 +60,7 @@ class Post extends React.Component {
 
   isPostInStorage = (post, storagePosts) => {
     const filter = storagePosts.filter(function(e) {
-      return e.id == post.id;
+      return e.id === post.id;
     });
 
     if (filter.length) {

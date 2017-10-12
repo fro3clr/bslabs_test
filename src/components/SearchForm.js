@@ -11,7 +11,7 @@ const SearchForm = ({ fetchPosts }) =>
       <form className="grey darken-3">
         <div className="input-field">
           <input type="search" required onChange={handleSearch(fetchPosts)} />
-          <label className="label-icon" for="search">
+          <label className="label-icon" htmlFor="search">
             <i className="material-icons">search</i>
           </label>
           <i className="material-icons">close</i>

@@ -1,21 +1,11 @@
 import React from "react";
 import Posts from "./posts/Posts";
 
-const getSavedPosts = () => {
-  const posts = JSON.parse(localStorage.getItem("savedPosts"));
-  return posts && posts.size > 0 ? posts.toJS().list : [];
-};
-
-const handleClick = storagePosts => event => {
-  console.log(storagePosts);
-};
-
 const SavedItems = ({ saveStorage, storagePosts }) =>
   <div>
     <a
       className="waves-effect waves-light btn-large modal-trigger grey darken-3"
       href="#modal1"
-      onClick={handleClick(storagePosts)}
     >
       {"Saved posts (" + storagePosts.length + ")"}
     </a>

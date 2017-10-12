@@ -1,6 +1,5 @@
-import { fromJS, List } from "immutable";
+import { fromJS } from "immutable";
 import { SAVE_STORAGE } from "../actions/storage";
-import _ from "lodash";
 
 const storage = (state, action) => {
   switch (action.type) {

@@ -1,6 +1,5 @@
-import { fromJS, List } from "immutable";
+import { List } from "immutable";
 import { ADD_COMMENT, REMOVE_COMMENT } from "../actions/comments";
-import _ from "lodash";
 
 const comments = (state, action) => {
   switch (action.type) {
