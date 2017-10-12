@@ -1,5 +1,5 @@
 import { fromJS } from "immutable";
-import _ from "lodash";
+import toArray from "lodash/toArray";
 import {
   REQUEST_POSTS,
   RECEIVE_POSTS,
@@ -15,7 +15,7 @@ const posts = (state, action) => {
     case RECEIVE_POSTS:
       return state
         .setIn(["posts", "isFetching"], false)
-        .mergeIn(["posts", "list"], _.toArray(action.posts));
+        .mergeIn(["posts", "list"], toArray(action.posts));
     case REMOVE_POST:
       return state.setIn(
         ["posts", "list"],
