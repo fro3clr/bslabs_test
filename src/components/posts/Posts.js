@@ -1,5 +1,5 @@
-import React from "react";
-import Post from "./Post";
+import React from 'react';
+import Post from './Post';
 
 const Posts = ({
   posts,
@@ -10,11 +10,11 @@ const Posts = ({
   removeComment,
   saveStorage,
   shortForm,
-  storagePosts
+  storagePosts,
 }) =>
   <div className="posts">
     {posts
-      ? posts.map((post, postIndex) =>
+      ? posts.map(post =>
           <Post
             key={post.id}
             post={post}
@@ -26,8 +26,7 @@ const Posts = ({
             saveStorage={saveStorage}
             shortForm={shortForm}
             storagePosts={storagePosts}
-          />
-        )
+          />)
       : null}
   </div>;
 

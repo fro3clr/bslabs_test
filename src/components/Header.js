@@ -1,8 +1,10 @@
-import React from "react";
-import SearchForm from "./SearchForm";
-import SavedItems from "./SavedItems";
+import React from 'react';
+import SearchForm from './SearchForm';
+import SavedItems from './SavedItems';
 
-const Header = ({ logo, saveStorage, fetchPosts, storagePosts }) =>
+const Header = ({
+  logo, saveStorage, fetchPosts, storagePosts,
+}) =>
   <div className="row">
     <header className="App-header">
       <div className="col s2">

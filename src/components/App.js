@@ -1,32 +1,32 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import logo from "../logo.svg";
-import "../App.css";
-import Posts from "./posts/Posts";
-import Header from "./Header";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import logo from '../logo.svg';
+import '../App.css';
+import Posts from './posts/Posts';
+import Header from './Header';
 import {
   fetchPosts,
   removePost,
   approvePost,
-  declinePost
-} from "../actions/posts";
-import { addComment, removeComment } from "../actions/comments";
-import { saveStorage } from "../actions/storage";
+  declinePost,
+} from '../actions/posts';
+import { addComment, removeComment } from '../actions/comments';
+import { saveStorage } from '../actions/storage';
 
 class App extends Component {
   componentWillMount() {
-    this.props.fetchPosts("robot");
+    this.props.fetchPosts('robot');
     this.synchronizeStorage();
   }
 
   getPosts(posts) {
-    return posts && posts.get("list").size > 0 ? posts.toJS().list : [];
+    return posts && posts.get('list').size > 0 ? posts.toJS().list : [];
   }
 
   synchronizeStorage() {
-    let savedPosts = JSON.parse(localStorage.getItem("savedPosts"));
-    if (!JSON.parse(localStorage.getItem("savedPosts"))) {
-      localStorage.setItem("savedPosts", JSON.stringify([]));
+    const savedPosts = JSON.parse(localStorage.getItem('savedPosts'));
+    if (!JSON.parse(localStorage.getItem('savedPosts'))) {
+      localStorage.setItem('savedPosts', JSON.stringify([]));
     } else {
       this.props.saveStorage(savedPosts);
     }
@@ -66,7 +66,7 @@ const AppContainer = connect(mapStateToProps, {
   declinePost,
   addComment,
   removeComment,
-  saveStorage
+  saveStorage,
 })(App);
 
 export default AppContainer;

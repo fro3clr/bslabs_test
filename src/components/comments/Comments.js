@@ -1,6 +1,6 @@
-import React from "react";
-import Comment from "./Comment";
-import CommentForm from "./CommentForm";
+import React from 'react';
+import Comment from './Comment';
+import CommentForm from './CommentForm';
 
 const Comments = ({ post, addComment, removeComment }) =>
   <div className="card-reveal">
@@ -16,8 +16,7 @@ const Comments = ({ post, addComment, removeComment }) =>
             commentId={commentId}
             comment={comment}
             removeComment={removeComment}
-          />
-        )
+          />)
       : null}
         </ul>
         <CommentForm post={post} addComment={addComment}/>

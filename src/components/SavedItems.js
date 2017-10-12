@@ -7,7 +7,7 @@ const SavedItems = ({ saveStorage, storagePosts }) =>
       className="waves-effect waves-light btn-large modal-trigger grey darken-3"
       href="#modal1"
     >
-      {"Saved posts (" + storagePosts.length + ")"}
+      {'Saved posts (' + storagePosts.length + ')'}
     </a>
     <div id="modal1" className="modal">
       <div className="modal-content black-text">
@@ -20,7 +20,7 @@ const SavedItems = ({ saveStorage, storagePosts }) =>
               saved={true}
               storagePosts={storagePosts}
             />
-          : "No saved posts"}
+          : 'No saved posts'}
       </div>
     </div>
   </div>;

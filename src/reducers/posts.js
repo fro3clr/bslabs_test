@@ -1,48 +1,46 @@
-import { fromJS } from "immutable";
-import toArray from "lodash/toArray";
+import { fromJS } from 'immutable';
+import toArray from 'lodash/toArray';
 import {
   REQUEST_POSTS,
   RECEIVE_POSTS,
   REMOVE_POST,
   APPROVE_POST,
-  DECLINE_POST
-} from "../actions/posts";
+  DECLINE_POST,
+} from '../actions/posts';
 
 const posts = (state, action) => {
   switch (action.type) {
     case REQUEST_POSTS:
-      return state.set("posts", fromJS({ isFetching: true, list: [] }));
+      return state.set('posts', fromJS({ isFetching: true, list: [] }));
     case RECEIVE_POSTS:
       return state
-        .setIn(["posts", "isFetching"], false)
-        .mergeIn(["posts", "list"], toArray(action.posts));
+        .setIn(['posts', 'isFetching'], false)
+        .mergeIn(['posts', 'list'], toArray(action.posts));
     case REMOVE_POST:
       return state.setIn(
-        ["posts", "list"],
+        ['posts', 'list'],
         state
-          .getIn(["posts", "list"])
-          .remove(
-            state
-              .getIn(["posts", "list"])
-              .findKey(post => post.get("id") === action.postId)
-          )
+          .getIn(['posts', 'list'])
+          .remove(state
+              .getIn(['posts', 'list'])
+              .findKey(post => post.get('id') === action.postId))
       );
     case APPROVE_POST: {
       const post = state
-        .getIn(["posts", "list"])
-        .findKey(post => post.get("id") === action.postId);
+        .getIn(['posts', 'list'])
+        .findKey(post => post.get('id') === action.postId);
       return state.setIn(
-        ["posts", "list", post, "likes"],
-        state.getIn(["posts", "list", post]).get("likes") + 1
+        ['posts', 'list', post, 'likes'],
+        state.getIn(['posts', 'list', post]).get('likes') + 1
       );
     }
     case DECLINE_POST: {
       const post = state
-        .getIn(["posts", "list"])
-        .findKey(post => post.get("id") === action.postId);
+        .getIn(['posts', 'list'])
+        .findKey(post => post.get('id') === action.postId);
       return state.setIn(
-        ["posts", "list", post, "likes"],
-        state.getIn(["posts", "list", post]).get("likes") - 1
+        ['posts', 'list', post, 'likes'],
+        state.getIn(['posts', 'list', post]).get('likes') - 1
       );
     }
     default:

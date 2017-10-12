@@ -1,15 +1,16 @@
-import React from "react";
+import React from 'react';
 
 class CommentForm extends React.Component {
-  processComment = (post, addComment) => event => {
+  processComment = (post, addComment) => (event) => {
     event.preventDefault();
 
     addComment(post.id, {
       commentName: this.refs.name.value,
-      commentBody: this.refs.desc.value
+      commentBody: this.refs.desc.value,
     });
 
-    this.refs.name.value = this.refs.desc.value = "";
+    this.refs.name.value = '';
+    this.refs.desc.value = '';
   };
   render() {
     const { post, addComment } = this.props;

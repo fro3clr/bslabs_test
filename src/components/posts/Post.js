@@ -1,5 +1,5 @@
-import React from "react";
-import Comments from "../comments/Comments";
+import React from 'react';
+import Comments from '../comments/Comments';
 
 class Post extends React.Component {
   constructor(props) {
@@ -8,16 +8,16 @@ class Post extends React.Component {
       activeApprove: true,
       activeDecline: true,
       approvePost: false,
-      declinePost: false
+      declinePost: false,
     };
   }
 
-  handleClickOnClose = (post, removePost) => event => {
+  handleClickOnClose = (post, removePost) => (event) => {
     event.preventDefault();
     removePost(post.id);
   };
 
-  handleClickOnDeclinePost = (post, declinePost) => event => {
+  handleClickOnDeclinePost = (post, declinePost) => (event) => {
     event.preventDefault();
     declinePost(post.id);
 
@@ -25,11 +25,11 @@ class Post extends React.Component {
       activeApprove: true,
       activeDecline: false,
       approvedPost: false,
-      declinedPost: true
+      declinedPost: true,
     });
   };
 
-  handleClickOnApprovePost = (post, approvePost, activeApprove) => event => {
+  handleClickOnApprovePost = (post, approvePost, activeApprove) => (event) => {
     event.preventDefault();
     approvePost(post.id);
 
@@ -37,29 +37,29 @@ class Post extends React.Component {
       activeApprove: false,
       activeDecline: true,
       approvedPost: true,
-      declinedPost: false
+      declinedPost: false,
     });
   };
 
-  handleClickOnSave = (post, saveStorage, isPostInStorage) => event => {
+  handleClickOnSave = (post, saveStorage, isPostInStorage) => (event) => {
     event.preventDefault();
 
-    let stored = JSON.parse(localStorage.getItem("savedPosts"));
+    let stored = JSON.parse(localStorage.getItem('savedPosts'));
 
     if (isPostInStorage) {
-      stored = stored.filter(function(savedPost) {
+      stored = stored.filter((savedPost) => {
         return savedPost.id !== post.id;
       });
     } else {
       stored.push(post);
     }
 
-    localStorage.setItem("savedPosts", JSON.stringify(stored));
+    localStorage.setItem('savedPosts', JSON.stringify(stored));
     saveStorage(stored);
   };
 
   isPostInStorage = (post, storagePosts) => {
-    const filter = storagePosts.filter(function(e) {
+    const filter = storagePosts.filter((e) => {
       return e.id === post.id;
     });
 
@@ -78,7 +78,7 @@ class Post extends React.Component {
       removeComment,
       saveStorage,
       shortForm,
-      storagePosts
+      storagePosts,
     } = this.props;
 
     const isPostInStorage = this.isPostInStorage(post, storagePosts);
@@ -87,9 +87,9 @@ class Post extends React.Component {
         <div className="col s12 m6 l4">
           <div
             className={
-              "card large " +
-              (this.state.approvedPost ? "light-green lighten-4" : "") +
-              (this.state.declinedPost ? "red lighten-4" : "")
+              'card large ' +
+              (this.state.approvedPost ? 'light-green lighten-4' : '') +
+              (this.state.declinedPost ? 'red lighten-4' : '')
             }
           >
             <div className="card-image">
@@ -100,12 +100,12 @@ class Post extends React.Component {
                   >
                     <i className="material-icons grey darken-3">close</i>
                   </a>
-                : ""}
+                : ''}
               <img alt="" className="materialboxed" src={post.webformatURL} />
               <a
                 href={post.pageURL}
                 className="card-title grey lighten-1"
-                style={{ padding: "5px" }}
+                style={{ padding: '5px' }}
               >
                 Source
               </a>
@@ -123,32 +123,32 @@ class Post extends React.Component {
               {!shortForm
                 ? <a
                     className={
-                      "waves-effect waves-light btn green " +
-                      (this.state.activeApprove ? "" : "disabled")
+                      'waves-effect waves-light btn green ' +
+                      (this.state.activeApprove ? '' : 'disabled')
                     }
                     onClick={this.handleClickOnApprovePost(post, approvePost)}
                   >
                     <i className="material-icons center">check</i>
                   </a>
-                : ""}
+                : ''}
 
               {!shortForm
                 ? <a
                     className={
-                      "waves-effect waves-light btn red " +
-                      (this.state.activeDecline ? "" : "disabled")
+                      'waves-effect waves-light btn red ' +
+                      (this.state.activeDecline ? '' : 'disabled')
                     }
                     onClick={this.handleClickOnDeclinePost(post, declinePost)}
                   >
                     <i className="material-icons center">report_problem</i>
                   </a>
-                : ""}
+                : ''}
 
               {!shortForm
                 ? <a className="waves-effect waves-light btn grey darken-3 activator">
                     <i className="material-icons right">comments</i>
                   </a>
-                : ""}
+                : ''}
 
               <a className="waves-effect waves-light btn grey darken-3">
                 <i
@@ -156,10 +156,10 @@ class Post extends React.Component {
                   onClick={this.handleClickOnSave(
                     post,
                     saveStorage,
-                    isPostInStorage
+                    isPostInStorage,
                   )}
                 >
-                  {isPostInStorage ? "delete" : "save"}
+                  {isPostInStorage ? 'delete' : 'save'}
                 </i>
               </a>
             </div>
