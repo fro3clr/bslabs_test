@@ -3,7 +3,7 @@ import SearchForm from './SearchForm';
 import SavedItems from './SavedItems';
 
 const Header = ({
-  logo, saveStorage, fetchPosts, storagePosts,
+  logo, savePost, unsavePost, fetchPosts, savedPosts,
 }) =>
   <div className="row">
     <header className="App-header">
@@ -14,7 +14,7 @@ const Header = ({
         <SearchForm fetchPosts={fetchPosts} />
       </div>
       <div className="col s2">
-        <SavedItems saveStorage={saveStorage} storagePosts={storagePosts} />
+        <SavedItems savePost={savePost} unsavePost={unsavePost} savedPosts={savedPosts} />
       </div>
     </header>
   </div>;

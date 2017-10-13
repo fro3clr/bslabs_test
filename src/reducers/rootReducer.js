@@ -6,7 +6,7 @@ import {
   DECLINE_POST
 } from "../actions/posts";
 import { ADD_COMMENT, REMOVE_COMMENT } from "../actions/comments";
-import { SAVE_STORAGE } from "../actions/storage";
+import { READ_FROM_STORAGE, SAVE_POST, UNSAVE_POST } from "../actions/storage";
 import comments from "./comments";
 import storage from "./storage";
 import posts from "./posts";
@@ -22,7 +22,9 @@ const rootReducer = (state, action) => {
     case ADD_COMMENT:
     case REMOVE_COMMENT:
       return comments(state, action);
-    case SAVE_STORAGE:
+    case READ_FROM_STORAGE:
+    case SAVE_POST:
+    case UNSAVE_POST:
       return storage(state, action);
     default:
       return state;

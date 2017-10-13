@@ -1,10 +1,27 @@
-import { fromJS } from "immutable";
-import { SAVE_STORAGE } from "../actions/storage";
+import { List } from 'immutable';
+import { READ_FROM_STORAGE, SAVE_POST, UNSAVE_POST } from '../actions/storage';
 
 const storage = (state, action) => {
   switch (action.type) {
-    case SAVE_STORAGE:
-      return state.setIn(["storage", "list"], fromJS(action.data));
+    case READ_FROM_STORAGE:
+      return state.setIn(["savedPosts", "list"], action.savedPosts || List());
+    case SAVE_POST: {
+       return state
+                .setIn(
+                    ["savedPosts", "list"],
+                    state
+                        .getIn(["savedPosts", "list"])
+                        .push(action.post));
+    }
+    case UNSAVE_POST: {
+      const posts = state.getIn(["savedPosts", "list"]);
+
+      const postsWithoutTarget = posts.filter(e => {
+        return e.id !== action.post.id;
+      });
+
+      return state.setIn(["savedPosts", "list"], postsWithoutTarget);
+    }
     default:
       return state;
   }

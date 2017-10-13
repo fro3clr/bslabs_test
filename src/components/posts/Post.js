@@ -41,25 +41,18 @@ class Post extends React.Component {
     });
   };
 
-  handleClickOnSave = (post, saveStorage, isPostInStorage) => (event) => {
+  handleClickOnSave = (post, savePost, unsavePost, isPostInStorage) => (event) => {
     event.preventDefault();
 
-    let stored = JSON.parse(localStorage.getItem('savedPosts'));
-
     if (isPostInStorage) {
-      stored = stored.filter((savedPost) => {
-        return savedPost.id !== post.id;
-      });
+      unsavePost(post);
     } else {
-      stored.push(post);
+      savePost(post);
     }
-
-    localStorage.setItem('savedPosts', JSON.stringify(stored));
-    saveStorage(stored);
   };
 
-  isPostInStorage = (post, storagePosts) => {
-    const filter = storagePosts.filter((e) => {
+  isPostInStorage = (post, savedPosts) => {
+    const filter = savedPosts.filter((e) => {
       return e.id === post.id;
     });
 
@@ -76,12 +69,13 @@ class Post extends React.Component {
       declinePost,
       addComment,
       removeComment,
-      saveStorage,
+      savePost,
+      unsavePost,
+      savedPosts,
       shortForm,
-      storagePosts,
     } = this.props;
 
-    const isPostInStorage = this.isPostInStorage(post, storagePosts);
+    const isPostInStorage = this.isPostInStorage(post, savedPosts);
     return (
       <div className="row">
         <div className="col s12 m6 l4">
@@ -155,7 +149,8 @@ class Post extends React.Component {
                   className="material-icons center"
                   onClick={this.handleClickOnSave(
                     post,
-                    saveStorage,
+                    savePost,
+                    unsavePost,
                     isPostInStorage,
                   )}
                 >

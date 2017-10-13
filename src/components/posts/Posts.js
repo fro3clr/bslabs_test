@@ -8,9 +8,10 @@ const Posts = ({
   declinePost,
   addComment,
   removeComment,
-  saveStorage,
+  savePost,
+  unsavePost,
+  savedPosts,
   shortForm,
-  storagePosts,
 }) =>
   <div className="posts">
     {posts
@@ -23,9 +24,10 @@ const Posts = ({
             declinePost={declinePost}
             addComment={addComment}
             removeComment={removeComment}
-            saveStorage={saveStorage}
+            savePost={savePost}
+            unsavePost={unsavePost}
+            savedPosts={savedPosts}
             shortForm={shortForm}
-            storagePosts={storagePosts}
           />)
       : null}
   </div>;

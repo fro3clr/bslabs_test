@@ -8,28 +8,23 @@ import {
   fetchPosts,
   removePost,
   approvePost,
-  declinePost,
+  declinePost
 } from '../actions/posts';
 import { addComment, removeComment } from '../actions/comments';
-import { saveStorage } from '../actions/storage';
+import { readFromStorage, savePost, unsavePost } from '../actions/storage';
 
 class App extends Component {
   componentWillMount() {
-    this.props.fetchPosts('robot');
-    this.synchronizeStorage();
+    this.props.fetchPosts("robot");
+    this.props.readFromStorage();
   }
 
   getPosts(posts) {
-    return posts && posts.get('list').size > 0 ? posts.toJS().list : [];
+    return posts && posts.get("list").size > 0 ? posts.toJS().list : [];
   }
 
-  synchronizeStorage() {
-    const savedPosts = JSON.parse(localStorage.getItem('savedPosts'));
-    if (!JSON.parse(localStorage.getItem('savedPosts'))) {
-      localStorage.setItem('savedPosts', JSON.stringify([]));
-    } else {
-      this.props.saveStorage(savedPosts);
-    }
+   getPostsStorage(posts) {
+    return posts && posts.get("list") ? posts.toJS().list : [];
   }
 
   render() {
@@ -37,9 +32,10 @@ class App extends Component {
       <div className="App">
         <Header
           logo={logo}
-          saveStorage={this.props.saveStorage}
+          savePost={this.props.savePost}
+          unsavePost={this.props.unsavePost}
           fetchPosts={this.props.fetchPosts}
-          storagePosts={this.getPosts(this.props.storage)}
+          savedPosts={this.getPostsStorage(this.props.savedPosts)}
         />
         <p className="App-intro">Test task for Business Labs</p>
         <Posts
@@ -49,8 +45,9 @@ class App extends Component {
           declinePost={this.props.declinePost}
           addComment={this.props.addComment}
           removeComment={this.props.removeComment}
-          saveStorage={this.props.saveStorage}
-          storagePosts={this.getPosts(this.props.storage)}
+          savePost={this.props.savePost}
+          unsavePost={this.props.unsavePost}
+          savedPosts={this.getPostsStorage(this.props.savedPosts)}
         />
       </div>
     );
@@ -59,30 +56,36 @@ class App extends Component {
 
 const mapStateToProps = state => state.toObject();
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchPosts: (keyWord) => {
-            dispatch(fetchPosts(keyWord));
-        },
-         removePost: (postId) => {
-            dispatch(removePost(postId));
-        },
-         approvePost: (postId) => {
-            dispatch(approvePost(postId));
-        },
-         declinePost: (postId) => {
-            dispatch(declinePost(postId));
-        },
-         addComment: (postId, commentData) => {
-            dispatch(addComment(postId, commentData));
-        },
-         removeComment: (postId, commentData) => {
-            dispatch(removeComment(postId, commentData));
-        },
-         saveStorage: (data) => {
-            dispatch(saveStorage(data));
-        },
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchPosts: keyWord => {
+      dispatch(fetchPosts(keyWord));
+    },
+    removePost: postId => {
+      dispatch(removePost(postId));
+    },
+    approvePost: postId => {
+      dispatch(approvePost(postId));
+    },
+    declinePost: postId => {
+      dispatch(declinePost(postId));
+    },
+    addComment: (postId, commentData) => {
+      dispatch(addComment(postId, commentData));
+    },
+    removeComment: (postId, commentData) => {
+      dispatch(removeComment(postId, commentData));
+    },
+    readFromStorage: () => {
+      dispatch(readFromStorage());
+    },
+    savePost: post => {
+      dispatch(savePost(post));
+    },
+    unsavePost: post => {
+      dispatch(unsavePost(post));
     }
+  };
 };
 
 const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
