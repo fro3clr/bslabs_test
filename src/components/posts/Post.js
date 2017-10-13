@@ -144,15 +144,14 @@ class Post extends React.Component {
                   </a>
                 : ''}
 
-              <a className="waves-effect waves-light btn grey darken-3">
-                <i
-                  className="material-icons center"
-                  onClick={this.handleClickOnSave(
+              <a className="waves-effect waves-light btn grey darken-3" onClick={this.handleClickOnSave(
                     post,
                     savePost,
                     unsavePost,
                     isPostInStorage,
-                  )}
+                  )}>
+                <i
+                  className="material-icons center"
                 >
                   {isPostInStorage ? 'delete' : 'save'}
                 </i>

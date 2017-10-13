@@ -16,10 +16,11 @@ const storage = (state, action) => {
     case UNSAVE_POST: {
       const posts = state.getIn(["savedPosts", "list"]);
 
-      const postsWithoutTarget = posts.filter(e => {
+      let postsWithoutTarget = posts.filter(e => {
         return e.id !== action.post.id;
       });
 
+      if(posts.length == 1) {postsWithoutTarget = List();}
       return state.setIn(["savedPosts", "list"], postsWithoutTarget);
     }
     default:
